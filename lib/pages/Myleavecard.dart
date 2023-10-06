@@ -141,14 +141,19 @@ class _HomepageState extends State<Homepage> {
                                       color: Colors.blue,
                                     ),
                                   ),
-                                  Text(
-                                    card['date'],
-                                    style: TextStyle(
-                                      fontSize: 14,
-                                      color: Colors.grey,
-                                    ),
-                                  ),
-                                  Icon(Icons.info)
+                                  Row(
+                                    children: [
+                                      Text(
+                                        card['date'],
+                                        style: TextStyle(
+                                          fontSize: 14,
+                                          color: Colors.grey,
+                                        ),
+                                      ),
+                                      Icon(Icons
+                                          .info), // Replace this with your desired icon
+                                    ],
+                                  )
                                 ],
                               ),
                               // Card expiry date
@@ -157,7 +162,7 @@ class _HomepageState extends State<Homepage> {
                               Container(
                                 margin: const EdgeInsets.only(
                                     top: 1,
-                                    bottom: 8), // Set top and bottom margin
+                                    bottom: 7), // Set top and bottom margin
                                 child: ElevatedButton(
                                   onPressed: () {
                                     // Handle button tap here (same as GestureDetector)
