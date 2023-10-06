@@ -100,7 +100,7 @@ class _HomepageState extends State<Homepage> {
                 ),
               ),
               SizedBox(
-                height: 200,
+                height: 220,
                 child: ListView.builder(
                   itemCount: cards.length,
                   scrollDirection: Axis.horizontal,
@@ -122,10 +122,17 @@ class _HomepageState extends State<Homepage> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
-                              Image(
-                                image: AssetImage(card['icon']),
-                                width: 34,
-                                height: 64,
+                              Container(
+                                padding: EdgeInsets.all(8),
+                                decoration: BoxDecoration(
+                                  color: getColorFromString(card['name']),
+                                  shape: BoxShape.circle,
+                                ),
+                                child: Image(
+                                  image: AssetImage(card['icon']),
+                                  width: 34,
+                                  height: 64,
+                                ),
                               ),
                               // Card info
                               // Text(card['name']),
@@ -150,8 +157,12 @@ class _HomepageState extends State<Homepage> {
                                           color: Colors.grey,
                                         ),
                                       ),
-                                      Icon(Icons
-                                          .info), // Replace this with your desired icon
+                                      InkWell(
+                                        onTap: () {
+                                          print('hello');
+                                        },
+                                        child: Icon(Icons.info),
+                                      ), // Replace this with your desired icon
                                     ],
                                   )
                                 ],
@@ -161,8 +172,8 @@ class _HomepageState extends State<Homepage> {
 // Button
                               Container(
                                 margin: const EdgeInsets.only(
-                                    top: 1,
-                                    bottom: 7), // Set top and bottom margin
+                                    top: 6,
+                                    bottom: 5), // Set top and bottom margin
                                 child: ElevatedButton(
                                   onPressed: () {
                                     // Handle button tap here (same as GestureDetector)
@@ -188,7 +199,8 @@ class _HomepageState extends State<Homepage> {
                                   child: const Text(
                                     'Request',
                                     style: TextStyle(
-                                      color: Colors.black, // Button text color
+                                      color: Colors.black,
+                                      // Button text color
                                     ),
                                   ),
                                 ),
@@ -222,5 +234,34 @@ class _HomepageState extends State<Homepage> {
         ),
       ),
     );
+  }
+
+  Color getColorFromString(String colorName) {
+    // Remove spaces and convert to lowercase
+    String cleanedColorName = colorName.replaceAll(' ', '').toLowerCase();
+
+    switch (cleanedColorName) {
+      case 'businessleave':
+        return const Color(0xFFFFD3C0);
+      case 'annualleave':
+        return const Color(0xFFC9E0FF);
+      case 'long-termsick':
+        return const Color(0xFFBCF8FF);
+      case 'short-termsick':
+        return const Color(0xFFFFE3AE);
+      case 'studyleave':
+        return const Color(0xFFCAF6D2);
+      case 'maternityleave':
+        return const Color(0xFFF4BEF8);
+      // Add more color cases as needed
+      default:
+        return Colors.grey; // Default color for unknown names
+    }
+  }
+
+  void main() {
+    String colorName = 'Business leave'; // Replace with the desired color name
+    Color color = getColorFromString(colorName);
+    print(color); // Prints the corresponding color
   }
 }
