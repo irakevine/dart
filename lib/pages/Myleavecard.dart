@@ -78,23 +78,36 @@ class _HomepageState extends State<Homepage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Leave')),
-      backgroundColor: Colors.white,
+      // appBar: AppBar(
+      //     title: const Text(
+      //   'Leave',
+      //   style: TextStyle(
+      //     fontSize: 16,
+      //     color:
+      //         const Color(0xFFC8CDD8), // This corresponds to line-height in CSS
+      //   ),
+      // )),
+
       body: SingleChildScrollView(
         child: SizedBox(
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
           child: Column(
             children: [
-              const SizedBox(height: 40),
+              const SizedBox(),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                padding: EdgeInsets.fromLTRB(28, 0.2, 3, 1),
                 child: Row(
                   children: const [
                     Text(
                       'My leave',
-                      style:
-                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: const Color(0xFFC8CDD8),
+                        fontStyle: FontStyle.normal,
+                        fontWeight: FontWeight.w700,
+                        height: 7.0, // This corresponds to line-height in CSS
+                      ),
                     ),
                   ],
                 ),
@@ -108,7 +121,8 @@ class _HomepageState extends State<Homepage> {
                     final card = cards[index];
 
                     return Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      // padding: const EdgeInsets.all(8.0)
+                      padding: EdgeInsets.fromLTRB(20, 8, 1, 8),
                       child: GestureDetector(
                         onTap: () {
                           print('Button tapped for card ${card['name']}');
@@ -161,7 +175,19 @@ class _HomepageState extends State<Homepage> {
                                         onTap: () {
                                           print('hello');
                                         },
-                                        child: Icon(Icons.info),
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                            shape: BoxShape.circle,
+                                            border: Border.all(
+                                              color: const Color(
+                                                  0xFFC8CDD8), // Set the border color here
+                                              width: 2.0,
+                                            ),
+                                          ),
+                                          child: Icon(
+                                            Icons.info,
+                                          ),
+                                        ),
                                       ), // Replace this with your desired icon
                                     ],
                                   )
@@ -172,7 +198,7 @@ class _HomepageState extends State<Homepage> {
 // Button
                               Container(
                                 margin: const EdgeInsets.only(
-                                    top: 6,
+                                    top: 3,
                                     bottom: 5), // Set top and bottom margin
                                 child: ElevatedButton(
                                   onPressed: () {
