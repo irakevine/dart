@@ -254,7 +254,7 @@ class _HomepageState extends State<Homepage> {
                 ),
               ),
               const Expanded(
-                flex: 29,
+                flex: 2,
                 child: MyleaveHistory(),
               ),
               Padding(
@@ -270,7 +270,7 @@ class _HomepageState extends State<Homepage> {
                 ),
               ),
               Expanded(
-                flex: 6,
+                flex: 3,
                 child: MyApprovalList(),
               ),
             ],

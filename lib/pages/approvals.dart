@@ -1,5 +1,18 @@
 import 'package:flutter/material.dart';
 
+void main() {
+  runApp(
+    MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Approval List'),
+        ),
+        body: MyApprovalList(),
+      ),
+    ),
+  );
+}
+
 class MyApprovalList extends StatelessWidget {
   MyApprovalList({Key? key}) : super(key: key);
 
@@ -50,74 +63,120 @@ class MyApprovalList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: approvalData.length,
-      itemBuilder: (context, index) {
-        final data = approvalData[index];
-        return Card(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15.0),
-          ),
-          color: Colors.white,
-          elevation: 10,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              ListTile(
-                leading: Icon(Icons.album, size: 60),
-                title: Text(
-                  data['name'],
-                  style: TextStyle(fontSize: 20.0),
-                ),
-                subtitle: RichText(
-                  text: TextSpan(
-                    style: DefaultTextStyle.of(context).style,
-                    children: <TextSpan>[
-                      TextSpan(
-                        text: data['date'],
-                        style: TextStyle(fontSize: 18.0),
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: ListView.builder(
+        itemCount: approvalData.length,
+        itemBuilder: (context, index) {
+          final data = approvalData[index];
+          return Container(
+            width: 300,
+            height: 200,
+            child: Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(15.0),
+              ),
+              color: Colors.white,
+              elevation: 10,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  ListTile(
+                    // leading: Icon(Icons.album, size: 60),
+                    leading: Container(
+                      // Use a Container for the transparent background
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Colors.white70,
                       ),
-                      TextSpan(
-                        text: '\n${data['dateinfo']}\n${data['leaveTypeName']}',
-                        style: TextStyle(fontSize: 14.0),
+                      child: CircleAvatar(
+                        radius: 30,
+
+                        backgroundImage: AssetImage(
+                            'your_image_path_here'), // Replace with your image asset
                       ),
-                    ],
+                    ),
+                    title: Text(
+                      data['name'],
+                      style: TextStyle(
+                        fontSize: 20.0,
+                        height: 2.3,
+                      ),
+                    ),
+                    subtitle: RichText(
+                      text: TextSpan(
+                        style: DefaultTextStyle.of(context).style,
+                        children: <TextSpan>[
+                          TextSpan(
+                            text: data['date'],
+                            style: TextStyle(fontSize: 18.0),
+                          ),
+                          TextSpan(
+                            text:
+                                '\n${data['dateinfo']}\n${data['leaveTypeName']}',
+                            style: TextStyle(fontSize: 14.0),
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.all(8.0), // Add some padding
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        padding: EdgeInsets.symmetric(
-                            vertical: 4.0, horizontal: 8.0), // Button padding
-                      ),
-                      onPressed: () {
-                        // Your Accept button action here
-                      },
-                      child: Text('Accept'),
+                  Padding(
+                    padding: EdgeInsets.all(8.0), // Add some padding
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            padding: EdgeInsets.symmetric(
+                                vertical: 4.0, horizontal: 8.0),
+                            backgroundColor:
+                                const Color(0xFFFF7133), // Button padding
+                          ),
+                          onPressed: () {
+                            // Your Accept button action here
+                          },
+                          child: Text('Accept'),
+                        ),
+                        SizedBox(
+                            width: 8.0), // Add some spacing between buttons
+                        Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: const Color(0xFFFF7133), // Border color
+                              width: 2.0, // Border width
+                            ),
+                            borderRadius:
+                                BorderRadius.circular(8.0), // Border radius
+                          ),
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              primary: Colors.white, // Background color
+                              padding: EdgeInsets.symmetric(
+                                vertical: 4.0,
+                                horizontal: 8.0,
+                              ), // Button padding
+                            ),
+                            onPressed: () {
+                              // Your Cancel button action here
+                            },
+                            child: Text(
+                              'Cancel',
+                              style: TextStyle(
+                                color: const Color(
+                                    0xFFFF7133), // Button text color
+                              ),
+                            ),
+                          ),
+                        )
+                      ],
                     ),
-                    SizedBox(width: 16.0), // Add some spacing between buttons
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        padding: EdgeInsets.symmetric(
-                            vertical: 4.0, horizontal: 8.0), // Button padding
-                      ),
-                      onPressed: () {
-                        // Your Cancel button action here
-                      },
-                      child: Text('Cancel'),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-            ],
-          ),
-        );
-      },
+            ),
+          );
+        },
+      ),
     );
   }
 }
