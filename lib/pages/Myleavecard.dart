@@ -1,6 +1,8 @@
 import 'package:first_app/pages/myleaveHistory.dart';
 import 'package:flutter/material.dart';
 
+import 'approvals.dart';
+
 class Homepage extends StatefulWidget {
   const Homepage({Key? key}) : super(key: key);
 
@@ -252,8 +254,24 @@ class _HomepageState extends State<Homepage> {
                 ),
               ),
               const Expanded(
-                flex: 1,
+                flex: 29,
                 child: MyleaveHistory(),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                child: Row(
+                  children: const [
+                    Text(
+                      'Approvals',
+                      style:
+                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
+              ),
+              Expanded(
+                flex: 6,
+                child: MyApprovalList(),
               ),
             ],
           ),
