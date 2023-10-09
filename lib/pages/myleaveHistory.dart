@@ -6,49 +6,47 @@ class MyleaveHistory extends StatelessWidget {
   final List<Map<String, dynamic>> leaveHistoryData = [
     {
       'id': '1',
-      'name': 'Sonu Nigam',
       'date': '15 days',
+      'status': 'Pending',
       'dateinfo': 'Tue, 22 Nov - Fri, 24 Nov',
       'leaveTypeName': 'Business leave'
     },
     {
       'id': '2',
-      'name': 'nellen iarkoze',
       'date': '12 days',
+      'status': 'Approved',
       'dateinfo': 'Tue, 27 Nov - Fri, 30 Nov',
       'leaveTypeName': 'Annual Leave'
     },
     {
       'id': '3',
-      'name': 'Sonu Nigam',
       'date': '18 days',
+      'status': 'Declined',
       'dateinfo': 'Tue, 22 Nov - Fri, 25 Nov',
       'leaveTypeName': 'Long-term sick'
     },
     {
       'id': '4',
-      'name': 'Sonu Nigam',
       'date': '20 days',
+      'status': 'Approved',
       'dateinfo': 'Tue, 2 Nov - Fri, 20 Nov',
       'leaveTypeName': 'Short-term sick'
     },
     {
       'id': '5',
-      'name': 'David Niwewe',
       'date': '15 days',
+      'status': 'Pending',
       'dateinfo': 'Tue, 10 Nov - Fri, 25 Nov',
       'leaveTypeName': 'Study leave'
     },
     {
       'id': '6',
-      'name': 'Davilla Niwewe',
       'date': '4 days',
+      'status': 'Declined',
       'dateinfo': 'Tue, 16 Nov - Fri, 20 Nov',
       'leaveTypeName': 'Maternity leave'
     },
   ];
-
-  get onPressed => null;
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +58,7 @@ class MyleaveHistory extends StatelessWidget {
           final data = leaveHistoryData[index];
           return Container(
             width: 300,
-            height: 170,
+            height: 100,
             child: Card(
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(15.0),
@@ -71,32 +69,56 @@ class MyleaveHistory extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   ListTile(
-                    title: Text(
-                      data['name'],
-                      style: TextStyle(
-                        fontSize: 14.0,
-                        height: 2.3,
-                        fontWeight: FontWeight.w700,
-                        color: Color(0xFF8893AA),
-                      ),
-                    ),
                     subtitle: RichText(
                       text: TextSpan(
                         style: DefaultTextStyle.of(context).style,
-                        children: <TextSpan>[
+                        children: <InlineSpan>[
                           TextSpan(
                             text: data['date'],
                             style: TextStyle(
-                                fontSize: 13.0,
-                                fontWeight: FontWeight.w400,
-                                color: Color(0xFF8893AA)),
+                              fontSize: 13.0,
+                              fontWeight: FontWeight.w400,
+                              color: Color(0xFF8893AA),
+                            ),
+                          ),
+                          WidgetSpan(
+                            child: SizedBox(
+                                width: 180.0), // Adjust width as needed
+                          ),
+                          TextSpan(
+                            style: TextStyle(
+                              fontSize: 13.0,
+                              fontWeight: FontWeight.w400,
+                            ),
+                            children: <InlineSpan>[
+                              WidgetSpan(
+                                child: Container(
+                                  padding: EdgeInsets.all(
+                                      4.0), // Adjust padding as needed
+                                  decoration: BoxDecoration(
+                                    color: getBgColorFromStringStatus(data[
+                                        'status']), // Your background color here
+                                    borderRadius: BorderRadius.circular(
+                                        4.0), // Optional: Add rounded corners
+                                  ),
+                                  child: Text(
+                                    data['status'],
+                                    style: TextStyle(
+                                      color: Colors
+                                          .white, // Text color on the background
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                           TextSpan(
                             text: '\n${data['dateinfo']}\n',
                             style: TextStyle(
-                                fontSize: 14.0,
-                                fontWeight: FontWeight.w600,
-                                color: Color(0xFF6B7A99)),
+                              fontSize: 14.0,
+                              fontWeight: FontWeight.w600,
+                              color: Color(0xFF6B7A99),
+                            ),
                           ),
                           TextSpan(
                             text: data['leaveTypeName'],
@@ -107,19 +129,21 @@ class MyleaveHistory extends StatelessWidget {
                               color: getColorFromString(data['leaveTypeName']),
                             ),
                           ),
+                          WidgetSpan(
+                            alignment: PlaceholderAlignment.middle,
+                            child: SizedBox(
+                                width:
+                                    180.0), // Adjust the width as needed for spacing
+                          ),
+                          WidgetSpan(
+                            alignment: PlaceholderAlignment.middle,
+                            child: Icon(
+                              Icons.arrow_forward,
+                              // color: Colors
+                              //     .transparent, // Set your desired color here
+                            ),
+                          ),
                         ],
-                      ),
-                    ),
-                    trailing: ElevatedButton(
-                      onPressed: onPressed,
-                      child: const Text('Accept'),
-                      style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all<Color>(
-                          const Color(0xFFFF7133),
-                        ), // Background color
-                        foregroundColor: MaterialStateProperty.all<Color>(
-                          Colors.white,
-                        ), // Text color
                       ),
                     ),
                   ),
@@ -161,5 +185,21 @@ class MyleaveHistory extends StatelessWidget {
       default:
         return Colors.grey;
     }
+  }
+}
+
+Color getBgColorFromStringStatus(String colorName) {
+  String cleanedColorName = colorName.replaceAll(' ', '').toLowerCase();
+
+  switch (cleanedColorName) {
+    case 'approved':
+      return const Color(0xFF25BA34);
+    case 'declined':
+      return const Color(0xFFE62E2E);
+    case 'pending':
+      return const Color(0xFF2DB8B8);
+
+    default:
+      return Colors.grey;
   }
 }
