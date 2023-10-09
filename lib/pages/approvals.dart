@@ -1,18 +1,5 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(
-    MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Approval List'),
-        ),
-        body: MyApprovalList(),
-      ),
-    ),
-  );
-}
-
 class MyApprovalList extends StatelessWidget {
   MyApprovalList({Key? key}) : super(key: key);
 

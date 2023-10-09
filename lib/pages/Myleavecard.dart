@@ -264,8 +264,12 @@ class _HomepageState extends State<Homepage> {
                   children: const [
                     Text(
                       'Approvals',
-                      style:
-                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                        color: Color(0xFF4D5E80),
+                        fontSize: 14.0,
+                        fontWeight: FontWeight.w600,
+                        height: 1.0,
+                      ),
                     ),
                   ],
                 ),
