@@ -54,7 +54,7 @@ class MyApprovalList extends StatelessWidget {
     },
     {
       'id': '6',
-      'name': 'David Niwewe',
+      'name': 'Davilla Niwewe',
       'date': '4 days',
       'dateinfo': 'Tue, 16 Nov - Fri, 20 Nov',
       'leaveTypeName': 'Maternity leave'
@@ -136,7 +136,7 @@ class MyApprovalList extends StatelessWidget {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.all(8.0),
+                    padding: EdgeInsets.only(left: 16.0) + EdgeInsets.all(8.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
@@ -154,7 +154,7 @@ class MyApprovalList extends StatelessWidget {
                         SizedBox(width: 8.0),
                         OutlinedButton(
                           onPressed: onPressed,
-                          child: const Text('Outlined'),
+                          child: const Text('Cancel'),
                           style: ButtonStyle(
                             side: MaterialStateProperty.all<BorderSide>(
                               BorderSide(
@@ -187,13 +187,23 @@ class MyApprovalList extends StatelessWidget {
       case 'annualleave':
         return const Color(0xFF338FFF);
       case 'long-termsick':
-        return const Color(0xFFBCF8FF);
+        return const Color(0xFF2DB8B8);
       case 'short-termsick':
-        return const Color(0xFFFFE3AE);
+        return const Color(0xFFFFB833);
       case 'studyleave':
-        return const Color(0xFFCAF6D2);
+        return const Color(0xFF17701F);
       case 'maternityleave':
-        return const Color(0xFFF4BEF8);
+        return const Color(0xFFEE33FF);
+      case 'Circumstantialleave':
+        return const Color(0xFFFE993C);
+      case 'Miscellaneousleave':
+        return const Color(0xFF73E5F4);
+      case 'Traveldayleave':
+        return const Color(0xFFF4577B);
+      case 'Workfromhomeleave':
+        return const Color(0xFF9747FF);
+      case 'Compassionateleave':
+        return const Color(0xFFF56284);
       default:
         return Colors.grey;
     }
