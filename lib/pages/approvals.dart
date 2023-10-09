@@ -61,6 +61,8 @@ class MyApprovalList extends StatelessWidget {
     },
   ];
 
+  get onPressed => null;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -71,7 +73,7 @@ class MyApprovalList extends StatelessWidget {
           final data = approvalData[index];
           return Container(
             width: 300,
-            height: 200,
+            height: 170,
             child: Card(
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(15.0),
@@ -96,8 +98,10 @@ class MyApprovalList extends StatelessWidget {
                     title: Text(
                       data['name'],
                       style: TextStyle(
-                        fontSize: 20.0,
+                        fontSize: 14.0,
                         height: 2.3,
+                        fontWeight: FontWeight.w700,
+                        color: Color(0xFF8893AA),
                       ),
                     ),
                     subtitle: RichText(
@@ -106,18 +110,24 @@ class MyApprovalList extends StatelessWidget {
                         children: <TextSpan>[
                           TextSpan(
                             text: data['date'],
-                            style: TextStyle(fontSize: 18.0),
+                            style: TextStyle(
+                                fontSize: 13.0,
+                                fontWeight: FontWeight.w400,
+                                color: Color(0xFF8893AA)),
                           ),
                           TextSpan(
                             text: '\n${data['dateinfo']}\n',
                             style: TextStyle(
-                              fontSize: 14.0,
-                            ),
+                                fontSize: 14.0,
+                                fontWeight: FontWeight.w600,
+                                color: Color(0xFF6B7A99)),
                           ),
                           TextSpan(
                             text: data['leaveTypeName'],
                             style: TextStyle(
-                              fontSize: 14.0,
+                              fontSize: 12.0,
+                              fontWeight: FontWeight.w700,
+                              height: 1.0,
                               color: getColorFromString(data['leaveTypeName']),
                             ),
                           ),
@@ -131,44 +141,31 @@ class MyApprovalList extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            padding: EdgeInsets.symmetric(
-                                vertical: 4.0, horizontal: 8.0),
-                            backgroundColor: const Color(0xFFFF7133),
+                          onPressed: onPressed,
+                          child: const Text('Accept'),
+                          style: ButtonStyle(
+                            backgroundColor: MaterialStateProperty.all<Color>(
+                              const Color(0xFFFF7133),
+                            ), // Background color
+                            foregroundColor: MaterialStateProperty.all<Color>(
+                                Colors.white), // Text color
                           ),
-                          onPressed: () {
-                            // Your Accept button action here
-                          },
-                          child: Text('Accept'),
                         ),
                         SizedBox(width: 8.0),
-                        Container(
-                          decoration: BoxDecoration(
-                            border: Border.all(
-                              color: const Color(0xFFFF7133),
-                              width: 2.0,
+                        OutlinedButton(
+                          onPressed: onPressed,
+                          child: const Text('Outlined'),
+                          style: ButtonStyle(
+                            side: MaterialStateProperty.all<BorderSide>(
+                              BorderSide(
+                                  width: 2,
+                                  color: const Color(0xFFFF7133)), // Border
                             ),
-                            borderRadius: BorderRadius.circular(8.0),
-                          ),
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              primary: Colors.white,
-                              padding: EdgeInsets.symmetric(
-                                vertical: 4.0,
-                                horizontal: 8.0,
-                              ),
-                            ),
-                            onPressed: () {
-                              // Your Cancel button action here
-                            },
-                            child: Text(
-                              'Cancel',
-                              style: TextStyle(
-                                color: const Color(0xFFFF7133),
-                              ),
+                            foregroundColor: MaterialStateProperty.all<Color>(
+                              const Color(0xFFFF7133), // Text color
                             ),
                           ),
-                        )
+                        ),
                       ],
                     ),
                   ),
@@ -186,9 +183,9 @@ class MyApprovalList extends StatelessWidget {
 
     switch (cleanedColorName) {
       case 'businessleave':
-        return const Color(0xFFFFD3C0);
+        return const Color(0xFFFF7133);
       case 'annualleave':
-        return const Color(0xFFC9E0FF);
+        return const Color(0xFF338FFF);
       case 'long-termsick':
         return const Color(0xFFBCF8FF);
       case 'short-termsick':

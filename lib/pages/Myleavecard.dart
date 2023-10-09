@@ -188,6 +188,7 @@ class _HomepageState extends State<Homepage> {
                                           ),
                                           child: Icon(
                                             Icons.info,
+                                            color: Colors.transparent,
                                           ),
                                         ),
                                       ), // Replace this with your desired icon
