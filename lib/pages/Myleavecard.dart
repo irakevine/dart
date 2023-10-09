@@ -254,7 +254,7 @@ class _HomepageState extends State<Homepage> {
                   ],
                 ),
               ),
-              const Expanded(
+              Expanded(
                 flex: 2,
                 child: MyleaveHistory(),
               ),
