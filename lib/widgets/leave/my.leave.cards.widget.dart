@@ -19,7 +19,7 @@ class _MyLeaveCardWidgetState extends State<MyLeaveCardWidget> {
       print(widget.leaveType);
     }
     return Container(
-      margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+      margin: const EdgeInsets.symmetric(vertical: 20, horizontal: 60),
       decoration: BoxDecoration(
           color: leaveCardTypeContainerBg(widget.leaveType['name'].toString()),
           borderRadius: const BorderRadius.all(Radius.circular(10)),
