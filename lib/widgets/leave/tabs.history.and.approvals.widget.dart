@@ -30,8 +30,8 @@ class _TabsHistoryandApprovalsState extends State<TabsHistoryandApprovals> {
         children: [
           Container(
             margin: const EdgeInsets.only(
-              top: 30,
-              bottom: 5,
+              top: 1,
+              bottom: 1,
               left: 16,
               right: 16,
             ),
