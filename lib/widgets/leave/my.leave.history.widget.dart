@@ -90,29 +90,31 @@ class MyleaveHistoriesWidget extends StatelessWidget {
                             ),
                             const WidgetSpan(
                               child: SizedBox(
-                                  width: 180.0), // Adjust width as needed
+                                  width: 160.0), // Adjust width as needed
                             ),
                             TextSpan(
                               style: const TextStyle(
-                                fontSize: 13.0,
+                                fontSize: 40.0,
                                 fontWeight: FontWeight.w400,
                               ),
                               children: <InlineSpan>[
                                 WidgetSpan(
                                   child: Container(
-                                    padding: const EdgeInsets.all(
-                                        4.0), // Adjust padding as needed
+                                    padding: const EdgeInsets.only(
+                                        top: 4, right: 15, bottom: 4, left: 15),
+                                    // Adjust padding as needed
                                     decoration: BoxDecoration(
                                       color: getBgColorFromStringStatus(data[
                                           'status']), // Your background color here
                                       borderRadius: BorderRadius.circular(
-                                          4.0), // Optional: Add rounded corners
+                                          8.0), // Optional: Add rounded corners
                                     ),
                                     child: Text(
                                       data['status'],
                                       style: const TextStyle(
-                                        color: Colors
-                                            .white, // Text color on the background
+                                        color: Colors.white,
+
+                                        // Text color on the background
                                       ),
                                     ),
                                   ),
@@ -136,6 +138,10 @@ class MyleaveHistoriesWidget extends StatelessWidget {
                                 color:
                                     getColorFromString(data['leaveTypeName']),
                               ),
+                            ),
+                            const WidgetSpan(
+                              child: SizedBox(
+                                  width: 180.0), // Adjust width as needed
                             ),
                             WidgetSpan(
                               alignment: PlaceholderAlignment.middle,

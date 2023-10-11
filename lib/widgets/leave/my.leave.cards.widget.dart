@@ -1,8 +1,6 @@
 import 'package:first_app/utils/index.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 
 class MyLeaveCardWidget extends StatefulWidget {
   final Map<String, dynamic> leaveType;
@@ -60,7 +58,7 @@ class _MyLeaveCardWidgetState extends State<MyLeaveCardWidget> {
             Text(
               widget.leaveType['name'],
               style: const TextStyle(
-                  fontSize: 20.0,
+                  fontSize: 16.0,
                   fontWeight: FontWeight.w600,
                   color: const Color(0xFF465674)),
             ),
@@ -80,7 +78,7 @@ class _MyLeaveCardWidgetState extends State<MyLeaveCardWidget> {
                   child: Padding(
                     padding: const EdgeInsets.all(7.0),
                     child: Container(
-                      width: 25, // Set the desired width of the circle
+                      width: 15, // Set the desired width of the circle
                       height: 30, // Set the desired height of the circle
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
@@ -99,7 +97,7 @@ class _MyLeaveCardWidgetState extends State<MyLeaveCardWidget> {
                         child: Icon(
                           Icons.info,
                           color: Color(0xFFC8CDD8),
-                          size: 20, // Set the desired size of the Icon
+                          size: 12, // Set the desired size of the Icon
                         ),
                       ),
                     ),
@@ -131,7 +129,7 @@ class _MyLeaveCardWidgetState extends State<MyLeaveCardWidget> {
                 child: const Text(
                   'Request',
                   style: TextStyle(
-                    color: Colors.black,
+                    color: Color(0xFF465674),
                     // Button text color
                   ),
                 ),
