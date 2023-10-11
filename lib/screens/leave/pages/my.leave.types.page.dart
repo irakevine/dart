@@ -26,7 +26,7 @@ class MyleaveTypesPage extends StatelessWidget {
           ),
         ),
         const SizedBox(
-          height: 50,
+          height: 5,
         ),
         SmoothPageIndicator(
           controller: controller,
