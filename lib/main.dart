@@ -1,4 +1,4 @@
-import 'package:first_app/pages/Myleavecard.dart';
+import 'package:first_app/screens/leave/index.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Homepage(),
+      home: LeaveScreen(),
     );
   }
 }

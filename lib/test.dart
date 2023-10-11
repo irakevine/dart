@@ -1,16 +1,14 @@
-import 'package:first_app/pages/myleaveHistory.dart';
 import 'package:flutter/material.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-import 'approvals.dart';
+// ignore_for_file: public_member_api_docs
 
-class Homepage extends StatefulWidget {
-  const Homepage({Key? key}) : super(key: key);
-
+class HomePage extends StatefulWidget {
   @override
-  State<Homepage> createState() => _HomepageState();
+  _HomePageState createState() => _HomePageState();
 }
 
-class _HomepageState extends State<Homepage> {
+class _HomePageState extends State<HomePage> {
   List<Map<String, dynamic>> cards = [
     {
       'id': 1,
@@ -76,50 +74,41 @@ class _HomepageState extends State<Homepage> {
     //   'color': Color(0xFFE0EDFF),
     // },
   ];
+  final controller = PageController(viewportFraction: 0.8, keepPage: true);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      // appBar: AppBar(
-      //     title: const Text(
-      //   'Leave',
-      //   style: TextStyle(
-      //     fontSize: 16,
-      //     color:
-      //         const Color(0xFFC8CDD8), // This corresponds to line-height in CSS
-      //   ),
-      // )),
-
-      body: SingleChildScrollView(
-        child: SizedBox(
-          height: MediaQuery.of(context).size.height,
-          width: MediaQuery.of(context).size.width,
-          child: Column(
-            children: [
-              const SizedBox(),
-              Padding(
-                padding: EdgeInsets.fromLTRB(28, 0.2, 3, 1),
-                child: Row(
-                  children: const [
-                    Text(
-                      'My leave',
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: const Color(0xFFC8CDD8),
-                        fontStyle: FontStyle.normal,
-                        fontWeight: FontWeight.w700,
-                        height: 7.0, // This corresponds to line-height in CSS
-                      ),
-                    ),
-                  ],
-                ),
+    final pages = List.generate(
+        6,
+        (index) => Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(16),
+                color: Colors.grey.shade300,
               ),
+              margin: EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+              child: Container(
+                height: 280,
+                child: Center(
+                    child: Text(
+                  "Page $index",
+                  style: TextStyle(color: Colors.indigo),
+                )),
+              ),
+            ));
+
+    return Scaffold(
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              SizedBox(height: 16),
               SizedBox(
-                height: 220,
-                child: ListView.builder(
+                height: 240,
+                child: PageView.builder(
+                  controller: controller,
                   itemCount: cards.length,
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (context, index) {
+                  itemBuilder: (_, index) {
                     final card = cards[index];
 
                     return Padding(
@@ -239,78 +228,138 @@ class _HomepageState extends State<Homepage> {
                         ),
                       ),
                     );
+                    ;
                   },
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                child: Row(
-                  children: const [
-                    Text(
-                      'My leave history',
-                      style:
-                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+
+              SmoothPageIndicator(
+                controller: controller,
+                count: pages.length,
+                effect: const ExpandingDotsEffect(
+                    dotHeight: 10,
+                    dotWidth: 20,
+                    dotColor: Colors.red,
+                    activeDotColor: Colors.green
+                    // type: WormType.thinUnderground,
                     ),
-                  ],
-                ),
               ),
-              Expanded(
-                flex: 2,
-                child: MyleaveHistory(),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                child: Row(
-                  children: const [
-                    Text(
-                      'Approvals',
-                      style: TextStyle(
-                        color: Color(0xFF4D5E80),
-                        fontSize: 14.0,
-                        fontWeight: FontWeight.w600,
-                        height: 1.0,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Expanded(
-                flex: 3,
-                child: MyApprovalList(),
-              ),
+              //
+              // Padding(
+              //   padding: const EdgeInsets.only(top: 16, bottom: 8),
+              //   child: Text(
+              //     'Jumping Dot',
+              //     style: TextStyle(color: Colors.black54),
+              //   ),
+              // ),
+              // Container(
+              //   child: SmoothPageIndicator(
+              //     controller: controller,
+              //     count: pages.length,
+              //     effect: JumpingDotEffect(
+              //       dotHeight: 16,
+              //       dotWidth: 16,
+              //       jumpScale: .7,
+              //       verticalOffset: 15,
+              //     ),
+              //   ),
+              // ),
+              // Padding(
+              //   padding: const EdgeInsets.only(top: 16, bottom: 12),
+              //   child: Text(
+              //     'Scrolling Dots',
+              //     style: TextStyle(color: Colors.black54),
+              //   ),
+              // ),
+              // SmoothPageIndicator(
+              //     controller: controller,
+              //     count: pages.length,
+              //     effect: ScrollingDotsEffect(
+              //       activeStrokeWidth: 2.6,
+              //       activeDotScale: 1.3,
+              //       maxVisibleDots: 5,
+              //       radius: 8,
+              //       spacing: 10,
+              //       dotHeight: 12,
+              //       dotWidth: 12,
+              //     )),
+              // Padding(
+              //   padding: const EdgeInsets.only(top: 16, bottom: 16),
+              //   child: Text(
+              //     'Customizable Effect',
+              //     style: TextStyle(color: Colors.black54),
+              //   ),
+              // ),
+              // Container(
+              //   // color: Colors.red.withOpacity(.4),
+              //   child: SmoothPageIndicator(
+              //     controller: controller,
+              //     count: pages.length,
+              //     effect: CustomizableEffect(
+              //       activeDotDecoration: DotDecoration(
+              //         width: 32,
+              //         height: 12,
+              //         color: Colors.indigo,
+              //         rotationAngle: 180,
+              //         verticalOffset: -10,
+              //         borderRadius: BorderRadius.circular(24),
+              //         // dotBorder: DotBorder(
+              //         //   padding: 2,
+              //         //   width: 2,
+              //         //   color: Colors.indigo,
+              //         // ),
+              //       ),
+              //       dotDecoration: DotDecoration(
+              //         width: 24,
+              //         height: 12,
+              //         color: Colors.grey,
+              //         // dotBorder: DotBorder(
+              //         //   padding: 2,
+              //         //   width: 2,
+              //         //   color: Colors.grey,
+              //         // ),
+              //         // borderRadius: BorderRadius.only(
+              //         //     topLeft: Radius.circular(2),
+              //         //     topRight: Radius.circular(16),
+              //         //     bottomLeft: Radius.circular(16),
+              //         //     bottomRight: Radius.circular(2)),
+              //         borderRadius: BorderRadius.circular(16),
+              //         verticalOffset: 0,
+              //       ),
+              //       spacing: 6.0,
+              //       // activeColorOverride: (i) => colors[i],
+              //       inActiveColorOverride: (i) => colors[i],
+              //     ),
+              //   ),
+              // ),
+              // const SizedBox(height: 32.0),
             ],
           ),
         ),
       ),
     );
   }
+}
 
-  Color getColorFromString(String colorName) {
-    // Remove spaces and convert to lowercase
-    String cleanedColorName = colorName.replaceAll(' ', '').toLowerCase();
+Color getColorFromString(String colorName) {
+  // Remove spaces and convert to lowercase
+  String cleanedColorName = colorName.replaceAll(' ', '').toLowerCase();
 
-    switch (cleanedColorName) {
-      case 'businessleave':
-        return const Color(0xFFFFD3C0);
-      case 'annualleave':
-        return const Color(0xFFC9E0FF);
-      case 'long-termsick':
-        return const Color(0xFFBCF8FF);
-      case 'short-termsick':
-        return const Color(0xFFFFE3AE);
-      case 'studyleave':
-        return const Color(0xFFCAF6D2);
-      case 'maternityleave':
-        return const Color(0xFFF4BEF8);
-      // Add more color cases as needed
-      default:
-        return Colors.grey; // Default color for unknown names
-    }
-  }
-
-  void main() {
-    String colorName = 'Business leave'; // Replace with the desired color name
-    Color color = getColorFromString(colorName);
-    print(color); // Prints the corresponding color
+  switch (cleanedColorName) {
+    case 'businessleave':
+      return const Color(0xFFFFD3C0);
+    case 'annualleave':
+      return const Color(0xFFC9E0FF);
+    case 'long-termsick':
+      return const Color(0xFFBCF8FF);
+    case 'short-termsick':
+      return const Color(0xFFFFE3AE);
+    case 'studyleave':
+      return const Color(0xFFCAF6D2);
+    case 'maternityleave':
+      return const Color(0xFFF4BEF8);
+    // Add more color cases as needed
+    default:
+      return Colors.grey; // Default color for unknown names
   }
 }
