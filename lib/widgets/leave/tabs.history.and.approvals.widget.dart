@@ -1,5 +1,5 @@
 import 'package:first_app/screens/leave/pages/my.approval.list.page.dart';
-import 'package:first_app/widgets/leave/my.leave.history.widget.dart';
+import 'package:first_app/screens/leave/pages/my.leave.history.list.page.dart';
 import 'package:flutter/material.dart';
 
 class TabsHistoryandApprovals extends StatefulWidget {
@@ -13,7 +13,7 @@ class TabsHistoryandApprovals extends StatefulWidget {
 class _TabsHistoryandApprovalsState extends State<TabsHistoryandApprovals> {
   int _currentIndex = 0;
   final List<Widget> tabViews = [
-    MyleaveHistoriesWidget(),
+    const MyleaveHistoryPage(),
     MyApprovalListPage(),
   ];
 

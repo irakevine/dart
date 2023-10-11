@@ -79,7 +79,8 @@ class _ApprovalCardWidgetState extends State<ApprovalCardWidget> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 16.0) + EdgeInsets.all(8.0),
+              padding:
+                  const EdgeInsets.only(left: 16.0) + const EdgeInsets.all(8.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
